@@ -1,5 +1,8 @@
 package magenga.TimeLedger.common.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +18,10 @@ public class User {
     @Column(name = "user_seq")
     private int userSeq;
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account")
     private String account;
 
+//    @JsonIgnore//JSON序列化時忽略
     @Column(name = "password")
     private String password;
 
@@ -54,13 +56,13 @@ public class User {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userSeq=" + userSeq +
-                ", account='" + account + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "userSeq=" + userSeq +
+//                ", account='" + account + '\'' +
+//                ", password='" + password + '\'' +
+//                '}';
+//    }
 
 }

@@ -3,30 +3,29 @@ package magenga.TimeLedger.common;
 import jakarta.transaction.Transactional;
 import magenga.TimeLedger.common.dao.UserDao;
 import magenga.TimeLedger.common.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-import static magenga.TimeLedger.common.dao.UserDao.entityManager;
-
-@Repository
-public class UserService {
-
+@Transactional
+@Service
+public class UserCommandService {
+    @Autowired
+    private UserDao userDao;
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    @Transactional
     public void save(User theUser) {
-        entityManager.persist(theUser);
+        theUser.setPassword(encoder.encode(theUser.getPassword()));
+        userDao.save(theUser);
     }
 
-
-
     public boolean signUpCheck (String account) {
-        User checkingUser = UserDao.findSeqByAccount(account);
+        User checkingUser = userDao.findSeqByAccount(account);
         return checkingUser == null;
     }
 
     public boolean signInCheck (String account, String password) {
-        User checkingUser = UserDao.findSeqByAccount(account);
+        User checkingUser = userDao.findSeqByAccount(account);
         if (checkingUser == null) {
             System.out.println("User not found.");
             return false;

@@ -1,5 +1,6 @@
 package magenga.TimeLedger.systemMethod;
 
+import magenga.TimeLedger.common.UserQueryService;
 import magenga.TimeLedger.common.dao.UserDao;
 import magenga.TimeLedger.common.entity.User;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SystemLogging {
 
+    private UserQueryService userQueryService;
     private final Logger logger = (Logger) LoggerFactory.getLogger(SystemLogging.class);
 
     public void userLogIn(User user) {
@@ -23,7 +25,7 @@ public class SystemLogging {
     }
 
     public void userLogInFailed(User user) {
-        if(UserDao.findSeqByAccount(user.getAccount()) != null) {
+        if(userQueryService.findSeqByAccount(user.getAccount()) != null) {
             logger.info("userSeq :" + user.getUserSeq() + " logged in failed by wrong password.");
         }else{
             logger.info("someone typed wrong account.");
