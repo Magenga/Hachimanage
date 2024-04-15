@@ -21,7 +21,7 @@ public class User {
     @Column(name = "account")
     private String account;
 
-//    @JsonIgnore//JSON序列化時忽略
+//    @JsonIgnore//JSON序列化時忽略(開發時先註解)
     @Column(name = "password")
     private String password;
 

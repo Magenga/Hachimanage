@@ -2,6 +2,7 @@ package magenga.TimeLedger;
 
 import magenga.TimeLedger.common.UserQueryService;
 import magenga.TimeLedger.common.dto.RequestUser;
+import magenga.TimeLedger.common.exceprion.NotFoundException;
 import magenga.TimeLedger.common.util.AuthenticationResponse;
 import magenga.TimeLedger.common.util.JwtUtil;
 import magenga.TimeLedger.systemMethod.SystemLogging;
@@ -17,8 +18,8 @@ import java.util.List;
 import java.util.Map;
 
     @CrossOrigin(origins = "*") // 允許所有跨域請求
-    @RequestMapping("/api")
-    @org.springframework.web.bind.annotation.RestController
+    @RequestMapping("/api") //url前要加/api
+    @RestController
     public class UserRestController {
 
         @Autowired
@@ -48,11 +49,17 @@ import java.util.Map;
         //查詢單一用戶
         @GetMapping("/user/{user_id}")
         public User getOneUser (@PathVariable int user_id) {
-            return userQueryService.findOne(user_id);
+            User user = userQueryService.findOne(user_id);
+
+            if (user == null) {
+                throw new NotFoundException("user id not found " + user_id);
+            }
+
+            return user;
         }
 
         //新增用戶
-        @PostMapping("/user")
+        @PostMapping("/user")//註冊
         public ResponseEntity<Map<String, Object>> savingUserData (@RequestBody RequestUser signUpRequestUser) {
 
             boolean creatable = userCommandService.signUpCheck(signUpRequestUser.getAccount());
@@ -70,8 +77,7 @@ import java.util.Map;
         }
 
 
-        @PostMapping("/login")
-        @ResponseBody
+        @PostMapping("/login")//登入
         public ResponseEntity<AuthenticationResponse> login (@RequestBody RequestUser loginRequestUser) {
 
             boolean signInSuccess = userCommandService.signInCheck(loginRequestUser.getAccount(), loginRequestUser.getPassword());
@@ -85,6 +91,13 @@ import java.util.Map;
                 controllerSystemLogging.userLogInFailed(loginUser);
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthenticationResponse(null));
             }
+        }
+
+        @PutMapping("/user")
+        public User updateUserPassword (@RequestBody RequestUser requestUser) {
+
+            User user = null;
+            return user;
         }
 
 }

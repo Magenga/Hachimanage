@@ -19,6 +19,12 @@ public class UserCommandService {
         userDao.save(theUser);
     }
 
+    public void updatePassword(User theUser, String changedPassword) {
+        theUser = userDao.findSeqByAccount(theUser.getAccount());
+        User user = userDao.findOne(theUser.getUserSeq());
+        theUser.setPassword(encoder.encode(changedPassword));
+    }
+
     public boolean signUpCheck (String account) {
         User checkingUser = userDao.findSeqByAccount(account);
         return checkingUser == null;
