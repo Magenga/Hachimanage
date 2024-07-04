@@ -12,23 +12,30 @@ import java.util.List;
 @Repository
 public class UserDao {
 
-    public static EntityManager entityManager;
-
     @Autowired
-    public UserDao(EntityManager entityManager) {
-        UserDao.entityManager = entityManager;;
+    private EntityManager entityManager;
+
+    public void save(User theUser) {
+        entityManager.persist(theUser);
+    }
+    public void update(User theUser) {
+        entityManager.merge(theUser);
+    }
+    public void delete(User theUser) {
+        User user = entityManager.merge(theUser);
+        entityManager.remove(user);
     }
 
-    public User findOne (int id) {
+    public User findOne(int id) {
         return entityManager.find(User.class, id);
     }
 
-    public static List<User> findAll() {
-        TypedQuery<User> thwQuery = entityManager.createQuery("FROM User", User.class);
+    public List<User> findAll() {
+        TypedQuery<User> thwQuery = entityManager.createQuery("FROM User ORDER BY id", User.class);
         return thwQuery.getResultList();
     }
 
-    public static User findSeqByAccount(String account) {
+    public User findByAccount(String account) {
         TypedQuery<User> theQuery = entityManager.createQuery("FROM User WHERE account = :account", User.class);
         theQuery.setParameter("account",account);
         try {

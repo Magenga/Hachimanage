@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div>
+        <input type="text" id="account" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+        async function login() {
+            const account = document.getElementById('account').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await axios.post('http://localhost:8080/api/login', {
+                    account: account,
+                    password: password
+                });
+
+                const token = response.data.token;
+                const userId = response.data.userId;
+
+                if (token) {
+<!--                    console.log(token);-->
+                    localStorage.setItem('token', token); // 将 JWT 存储在 LocalStorage 中
+<!--                    console.log(account);-->
+                    localStorage.setItem('account', account);
+<!--                    console.log(userId);-->
+                    localStorage.setItem('userId', userId);
+                    alert('login successd!')
+                    window.location.href = 'http://localhost:8080/selectProject.html'; // 跳转到聊天页面
+                } else {
+                    alert('Login failed!');
+                }
+            } catch (error) {
+                console.error('Error logging in', error);
+                alert('Login failed!');
+            }
+        }
+    </script>
+</body>
+</html>

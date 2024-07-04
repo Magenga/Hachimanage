@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Project</title>
+</head>
+<body>
+<h2>Select Project</h2>
+<form id="projectForm">
+    <label for="projectId">Project ID:</label>
+    <input type="text" id="projectId" name="projectId">
+    <br>
+    <button type="button" onclick="selectProject()">Select Project</button>
+</form>
+
+<script>
+    function selectProject() {
+        const projectId = document.getElementById('projectId').value;
+        localStorage.setItem('projectId', projectId);
+        window.location.href = 'chat.html'; // Redirect to chat page
+    }
+</script>
+</body>
+</html>

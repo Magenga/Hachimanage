@@ -7,18 +7,15 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import java.security.Key;
 import java.util.Date;
 
 @Component
 public class JwtUtil {
 
-
-    private SecretKey key;
-//    private Key key = Keys.hmacShaKeyFor(secretKey.getBytes());
+    private final SecretKey key;
 
     public JwtUtil() {
-        key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+        this.key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }
 
     public String generateToken(String account) {
@@ -38,7 +35,6 @@ public class JwtUtil {
                 .getBody();
     }
 
-
     public String extractUsername(String token) {
         return extractClaims(token).getSubject();
     }
@@ -49,5 +45,8 @@ public class JwtUtil {
 
     public boolean validateToken(String token, String account) {
         return (account.equals(extractUsername(token)) && !isTokenExpired(token));
+    }
+    public SecretKey getKey() {
+        return this.key;
     }
 }
