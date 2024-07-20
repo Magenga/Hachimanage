@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        label, input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="date"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Create Project</h2>
+    <form id="createProjectForm">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+        
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" required>
+        
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" required>
+        
+        <button type="submit">Create Project</button>
+    </form>
+    
+    <script>
+        document.getElementById('createProjectForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const projectData = {
+                title: document.getElementById('title').value,
+                startDate: document.getElementById('startDate').value,
+                endDate: document.getElementById('endDate').value
+            };
+            
+            fetch('http://localhost:8080/api/project', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(projectData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json(); // 確保接收到的response是JSON格式
+                } else {
+                    throw new Error('Failed to create project.');
+                }
+            })
+            .then(data => {
+                alert('Project created successfully!');
+                console.log('Project', data); // 顯示創建的專案資訊到控制台
+                document.getElementById('createProjectForm').reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error creating project.');
+            });
+        });
+    </script>
+</body>
+</html>
