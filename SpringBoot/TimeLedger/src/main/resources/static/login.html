@@ -26,11 +26,11 @@
                 const userId = response.data.userId;
 
                 if (token) {
-<!--                    console.log(token);-->
+//                    console.log(token);
                     localStorage.setItem('token', token); // 将 JWT 存储在 LocalStorage 中
-<!--                    console.log(account);-->
+//                    console.log(account);
                     localStorage.setItem('account', account);
-<!--                    console.log(userId);-->
+//                    console.log(userId);
                     localStorage.setItem('userId', userId);
                     alert('login successd!')
                     window.location.href = 'http://localhost:8080/selectProject.html'; // 跳转到聊天页面

@@ -20,7 +20,7 @@ public class MongoConfig {
 
     @Bean
     public MongoTemplate mongoTemplate(MongoClient mongoClient) {
-        return new MongoTemplate(mongoClient, "sample_mflix");
+        return new MongoTemplate(mongoClient, "Hachimanage");
     }
 
     @Bean

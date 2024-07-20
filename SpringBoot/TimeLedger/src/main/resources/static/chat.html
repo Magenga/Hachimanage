@@ -54,15 +54,15 @@
 
             document.getElementById('sendMessage').addEventListener('click', () => {
                 const messageContent = document.getElementById('messageContent').value;
-                const ChatMessage = {
+                const chatMessage = {
                     userId: userId,
                     projectId: projectId,
-                    userAccount: account, // This should be replaced with actual user info
+                    userAccount: account,
                     content: messageContent,
                     type: 'CHAT'
                 };
 
-                stompClient.send(`/app/chat.sendMessage/${projectId}`, {}, JSON.stringify(message));
+                stompClient.send(`/app/chat.sendMessage/${projectId}`, {}, JSON.stringify(chatMessage));
             });
         }, (error) => {
             console.log('Connection error: ' + error);
@@ -75,7 +75,7 @@
         const messageContainer = document.getElementById('messageContainer');
         const messageElement = document.createElement('div');
         messageElement.className = 'message';
-        messageElement.innerText = `${message.timestamp} - ${message.account}: ${message.content}`;
+        messageElement.innerText = `${message.timestamp} - ${message.userAccount}: ${message.content}`;
         messageContainer.appendChild(messageElement);
 
         messageContainer.scrollTop = messageContainer.scrollHeight; // Auto scroll to the bottom

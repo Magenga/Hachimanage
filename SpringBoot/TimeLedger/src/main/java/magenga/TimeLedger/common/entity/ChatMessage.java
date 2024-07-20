@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.redis.core.index.Indexed;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.UUID;
 
 @Document(collection = "messages")
@@ -21,15 +21,13 @@ public class ChatMessage implements Serializable {
     private String userAccount;
     private String content;
     private String type;
-    private Timestamp timestamp;
+    private Instant timestamp;
 
-    // Default constructor
     public ChatMessage() {
         this.id = UUID.randomUUID().toString();
-        this.timestamp = new Timestamp(System.currentTimeMillis());
+        this.timestamp = Instant.now();
     }
 
-    // Constructor with all fields
     public ChatMessage(String projectId, String userId, String userAccount, String content, String type) {
         this.userId = userId;
         this.id = UUID.randomUUID().toString();
@@ -37,7 +35,7 @@ public class ChatMessage implements Serializable {
         this.userAccount = userAccount;
         this.content = content;
         this.type = type;
-        this.timestamp = new Timestamp(System.currentTimeMillis());
+        this.timestamp = Instant.now();
     }
 
     // Getters and setters
@@ -85,12 +83,12 @@ public class ChatMessage implements Serializable {
         this.type = type;
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    public Timestamp getTimestamp() {
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -99,13 +97,11 @@ public class ChatMessage implements Serializable {
         return "ChatMessage{" +
                 "id='" + id + '\'' +
                 ", userId='" + userId + '\'' +
-                ", roomId='" + projectId + '\'' +
-                ", account='" + userAccount + '\'' +
+                ", projectId='" + projectId + '\'' +
+                ", userAccount='" + userAccount + '\'' +
                 ", content='" + content + '\'' +
                 ", type='" + type + '\'' +
                 ", timestamp=" + timestamp +
                 '}';
     }
-
-
 }

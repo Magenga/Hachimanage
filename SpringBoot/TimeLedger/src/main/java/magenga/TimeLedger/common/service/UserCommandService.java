@@ -11,15 +11,15 @@ import org.springframework.stereotype.Service;
 public class UserCommandService {
     @Autowired
     private UserRepository userRepository;
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public void save (User theUser) {
-        theUser.setPassword(encoder.encode(theUser.getPassword()));
+        theUser.setPassword(passwordEncoder.encode(theUser.getPassword()));
         userRepository.save(theUser);
     }
 
     public void updatePassword (User user) {
-        user.setPassword(encoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -38,7 +38,7 @@ public class UserCommandService {
             System.out.println("User not found.");
             return false;
         }
-        boolean passwordCheck = encoder.matches(password,checkingUser.getPassword());
+        boolean passwordCheck = passwordEncoder.matches(password,checkingUser.getPassword());
         if (passwordCheck) {
             System.out.println("sign check.");
             return true;

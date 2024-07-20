@@ -17,10 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "*") // 允許所有跨域請求
-    @RequestMapping("/api") //url前要加/api
+@CrossOrigin(origins = "*")
+    @RequestMapping("/api")
     @RestController
-    public class UserRestController {
+    public class UserController {
 
         @Autowired
         private SystemLogging controllerSystemLogging;

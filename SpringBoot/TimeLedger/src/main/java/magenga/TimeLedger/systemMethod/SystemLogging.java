@@ -1,5 +1,6 @@
 package magenga.TimeLedger.systemMethod;
 
+import magenga.TimeLedger.common.entity.Project;
 import magenga.TimeLedger.common.service.UserQueryService;
 import magenga.TimeLedger.common.entity.User;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,11 @@ public class SystemLogging {
     public void userSignUp(User user) {
 
         logger.info("userSeq :" + user.getId() + " had sign up.");
+    }
+
+    public void projectCreate(Project project) {
+
+        logger.info("Project :" + project.getId() + " had created.Project title : " + project.getTitle()+ ".");
     }
 
     public void startedTimes () {
