@@ -12,3 +12,28 @@
     -ms-overflow-style: none;  /* IE 和 Edge */
     scrollbar-width: none;  /* Firefox */
   }
+  /* 隐藏默认滚动条 */
+.chat-container {
+  scrollbar-width: thin; /* 适用于 Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.6) transparent; /* 适用于 Firefox */
+  background-color: #575757; /* 设置背景颜色 */
+
+}
+
+.chat-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  visibility: hidden; /* 默认隐藏滚动条 */
+}
+
+.chat-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-container:hover::-webkit-scrollbar-thumb {
+  visibility: visible; /* 在容器被hover时显示滚动条 */
+}

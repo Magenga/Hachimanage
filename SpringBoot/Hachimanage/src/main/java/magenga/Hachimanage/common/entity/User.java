@@ -1,8 +1,10 @@
 package magenga.Hachimanage.common.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Repository
@@ -31,7 +33,8 @@ public class User {
 
 //    just for record user created
     @Column(name = "created_at")
-    private Date createdTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime createdAt;
 
     public User(){}
 
@@ -73,12 +76,12 @@ public class User {
         this.email = email;
     }
 
-    public Date getCreatedTime() {
-        return createdTime;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
 //    @Override

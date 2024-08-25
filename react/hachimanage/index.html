@@ -9,8 +9,18 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // 检查 platform 对象是否存在，以确定是否在 Electron 环境中
+      if (window.platform && window.platform.isWindows) {
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputElements = document.getElementsByTagName('input');
+            if (inputElements.length > 0) {
+                inputElements[0].focus();
+            }
+        });
+      }
+      // 解决可能的 globalThis 问题
+      var global = globalThis;
+    </script>
   </body>
 </html>
-<script>
-  var global = globalThis;
-</script>

@@ -65,9 +65,9 @@ import java.util.Map;
             boolean creatable = userCommandService.signUpCheck(signUpRequestUser.getAccount());
             Map<String, Object> response = new HashMap<>();
             response.put("userCreated", creatable);
-
             if (creatable){
                 User tempUser = new User(signUpRequestUser.getAccount(),signUpRequestUser.getPassword(), signUpRequestUser.getEmail());
+                response.put("user", tempUser);
                 userCommandService.save(tempUser);
                 controllerSystemLogging.userSignUp(tempUser);
                 return new ResponseEntity<>(response, HttpStatus.CREATED);

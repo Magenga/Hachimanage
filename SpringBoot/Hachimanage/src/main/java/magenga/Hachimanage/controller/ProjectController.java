@@ -1,5 +1,7 @@
 package magenga.Hachimanage.controller;
 
+import jakarta.websocket.OnClose;
+import magenga.Hachimanage.common.dto.InviteUserRequest;
 import magenga.Hachimanage.common.entity.Project;
 import magenga.Hachimanage.common.entity.User;
 import magenga.Hachimanage.common.exceprion.NotFoundException;
@@ -135,4 +137,25 @@ public class ProjectController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/invite")
+    public ResponseEntity<Map<String, Object>> inviteUserToProject (@RequestBody InviteUserRequest request) {
+        Map<String, Object> response = new HashMap<>();
+        String requestAccount = request.getUserAccount();
+        int requestProjectId = request.getProjectId();
+        try {
+            int requestUserId = userQueryService.findSeqByAccount(requestAccount).getId();
+            projectUserRoleService.addUser(requestProjectId, requestUserId);
+
+            response.put("status", "success");
+            response.put("message", "邀請成功");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.put("status", "error");
+            response.put("message", "找不到用戶或邀請失敗");
+            response.put("error", e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

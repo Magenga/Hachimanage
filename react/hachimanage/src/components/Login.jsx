@@ -7,12 +7,13 @@ const Login = () => {
   const [account, setAccount] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  
+
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       handleLogin(event);
     }
   };
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -26,15 +27,13 @@ const Login = () => {
         const result = response.data;
         alert('Login succeeded!');
 
-        // 保存用户数据到本地存储
-        localStorage.setItem('token', result.token);
+				localStorage.setItem('token', result.token);
         localStorage.setItem('account', result.account);
         localStorage.setItem('projectId', 1);
         localStorage.setItem('userId', result.userId);
         console.log(response.token);
 
-        // 获取用户的项目列表
-        try {
+				try {
           const getProjectResponse = await axios.get(`http://localhost:8080/api/setProject/${result.userId}`, {
             headers: {
               'Authorization': `Bearer ${result.token}`
@@ -47,7 +46,7 @@ const Login = () => {
         } catch (error) {
           console.error('Error fetching project list:', error);
           alert('Failed to fetch project list, but login succeeded');
-          navigate('/dashboard'); // 即使获取项目失败，仍然可以导航
+          navigate('/dashboard');
         }
 
       } else {

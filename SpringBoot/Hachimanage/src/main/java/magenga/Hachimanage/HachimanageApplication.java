@@ -15,7 +15,6 @@ public class HachimanageApplication {
 
 	//系統紀錄class實體化
 	private final SystemLogging systemLogging = new SystemLogging();
-	//放系統參數
 
 	@Bean
 	public CommandLineRunner commandLineRunner ()  {
