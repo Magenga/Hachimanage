@@ -7,60 +7,57 @@ const Loginbar = ({ account, setAccount, password, setPassword, handleLogin, han
     const toggleModal = () => {
         setShowModal(!showModal);
     };
-    
 
     return (
         <div>
-            <div className="w-screen h-screnn max-w-[700px] max-h-[419px] p-6 bg-white rounded-lg border border-[#d9d9d9] flex-col justify-start items-start gap-6 inline-flex">
-                <div className="self-stretch h-[70px] flex-col justify-start items-start gap-2 flex">
-                    <label htmlFor="account" className="self-stretch text-[#1e1e1e] text-base font-normal leading-snug">Account</label>
+            <div className="hs-card w-[min(100vw-32px,420px)] gap-[18px]">
+                <label className="hs-field" htmlFor="account">
+                    <span className="hs-field__label">帳號 Account</span>
                     <input
                         id="account"
                         type="text"
                         value={account}
                         onChange={(e) => setAccount(e.target.value)}
-                        className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] justify-start items-center inline-flex"
+                        className="hs-field__input"
                         placeholder="your account"
+                        autoComplete="username"
                         required
                         onKeyDown={handleKeyDown}
                     />
-                </div>
-                <div className="self-stretch h-[70px] flex-col justify-start items-start gap-2 flex">
-                    <label htmlFor="password" className="self-stretch text-[#1e1e1e] text-base font-normal leading-snug">Password</label>
+                </label>
+                <label className="hs-field" htmlFor="password">
+                    <span className="hs-field__label">密碼 Password</span>
                     <input
                         id="password"
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] justify-start items-center inline-flex"
+                        className="hs-field__input"
                         placeholder="your password"
+                        autoComplete="current-password"
                         required
                         onKeyDown={handleKeyDown}
                     />
-                </div>
-                <button onClick={handleLogin} className="self-stretch justify-start items-center gap-4 inline-flex">
-                    <div className="grow shrink basis-0 h-10 p-3 bg-[#2c2c2c] rounded-lg border border-[#2c2c2c] justify-center items-center gap-2 flex">
-                        <div className="text-neutral-100 text-base font-normal leading-none">Sign In</div>
-                    </div>
+                </label>
+                <button onClick={handleLogin} className="hs-btn hs-btn--primary w-full">
+                    登入 Sign In →
                 </button>
-                <div className="self-stretch justify-start items-start inline-flex">
-                    <button onClick={toggleModal} toggleModal={toggleModal} className="text-[#1e1e1e] text-base font-normal underline leading-snug">
-                        Sign Up
+                <div className="flex items-center justify-between gap-3 text-sm">
+                    <button type="button" onClick={toggleModal} className="font-bold text-ginger-text underline underline-offset-4">
+                        建立帳號 Sign Up
                     </button>
-                </div>
-                <div className="self-stretch justify-start items-start inline-flex">
-                    <a href="#" className="text-[#1e1e1e] text-base font-normal underline leading-snug">
-                        Forgot password?
+                    <a href="#" className="text-ink-muted">
+                        忘記密碼？
                     </a>
                 </div>
             </div>
 
             {showModal && (
-                <div className="h-auto fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="h-auto bg-white p-8 rounded-lg shadow-lg">
-                        <Signup closeModel={toggleModal} />
-                        <button onClick={toggleModal} className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-                            Cancel
+                <div className="h-auto fixed inset-0 bg-[rgba(59,49,42,0.6)] flex items-center justify-center z-50 p-4">
+                    <div className="h-auto bg-surface p-[22px] rounded-card max-h-screen overflow-y-auto">
+                        <Signup toggleModal={toggleModal} />
+                        <button onClick={toggleModal} className="hs-btn hs-btn--secondary w-full mt-3">
+                            取消 Cancel
                         </button>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loginbar from './Loginbar';
 import axios from 'axios';
+import { BRAND, SiteHeader, SiteFooter, Notice } from '../brand';
 
 const Login = () => {
   const [account, setAccount] = useState('');
@@ -59,19 +60,21 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div className="flex w-screen h-screen">
-        <div className="flex flex-col items-center justify-center flex-grow bg-[#33185f]">
-          <Loginbar
-            account={account}
-            setAccount={setAccount}
-            password={password}
-            setPassword={setPassword}
-            handleLogin={handleLogin}
-            handleKeyDown={handleKeyDown}
-          />
-        </div>
-      </div>
+    <div className="flex flex-col min-h-screen">
+      <SiteHeader />
+      <main className="flex flex-col items-center justify-center flex-grow gap-[18px] px-4 py-10">
+        <img src={BRAND.cuddle} alt="" className="w-40 h-auto" />
+        <h1 className="text-[36px] leading-tight text-center">登入 Hachimanage</h1>
+        <Loginbar
+          account={account}
+          setAccount={setAccount}
+          password={password}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          handleKeyDown={handleKeyDown}
+        />
+      </main>
+      <SiteFooter />
     </div>
   );
 };
