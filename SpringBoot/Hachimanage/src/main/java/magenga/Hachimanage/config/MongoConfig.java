@@ -14,7 +14,7 @@ public class MongoConfig {
 
     @Bean
     public MongoClient mongoClient() {
-        String uri = "mongodb+srv://root:21airr01@mycluster.wk4zgas.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster";
+        String uri = System.getenv("MONGODB_URI");
         return MongoClients.create(uri);
     }
 
