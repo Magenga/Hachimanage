@@ -1,23 +1,25 @@
+/* HACHIMAN STUDIO 八萬工作室設計系統：tokens 與共用元件在 src/brand/（main.jsx 載入），這裡只放本專案自己的樣式。 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+h1, h2, h3 { font-family: var(--font-zh); font-weight: 900; }
+
 /* 隐藏 Chrome、Safari 和 Opera 中的滚动条 */
 .hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* 隐藏 IE、Edge 和 Firefox 中的滚动条 */
-  .hide-scrollbar {
-    -ms-overflow-style: none;  /* IE 和 Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-  /* 隐藏默认滚动条 */
+  display: none;
+}
+
+/* 隐藏 IE、Edge 和 Firefox 中的滚动条 */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE 和 Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* 聊天室訊息區：滑鼠移上去才顯示捲軸 */
 .chat-container {
   scrollbar-width: thin; /* 适用于 Firefox */
-  scrollbar-color: rgba(255, 255, 255, 0.6) transparent; /* 适用于 Firefox */
-  background-color: #575757; /* 设置背景颜色 */
-
+  scrollbar-color: var(--line) transparent; /* 适用于 Firefox */
 }
 
 .chat-container::-webkit-scrollbar {
@@ -25,7 +27,7 @@
 }
 
 .chat-container::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: var(--line);
   border-radius: 4px;
   visibility: hidden; /* 默认隐藏滚动条 */
 }
@@ -37,3 +39,18 @@
 .chat-container:hover::-webkit-scrollbar-thumb {
   visibility: visible; /* 在容器被hover时显示滚动条 */
 }
+
+/* 頁首組合字標：深色主題換成反白版 */
+.hs-lockup--dark { display: none !important; }
+[data-theme="dark"] .hs-lockup--light { display: none !important; }
+[data-theme="dark"] .hs-lockup--dark { display: block !important; }
+
+/* 側欄：固定墨炭底（兩個主題都一樣），字用暖米 */
+.hs-rail-btn { color: #f6e7d6; }
+.hs-rail-btn:hover { background: #4a3d33; color: #f0a673; }
+
+/* react-datepicker 換成品牌色 */
+.react-datepicker { font-family: var(--font-sans); border-color: var(--line); }
+.react-datepicker__header { background: var(--surface-2); border-bottom-color: var(--line); }
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected { background: var(--action); color: var(--on-action); }

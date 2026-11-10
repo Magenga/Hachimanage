@@ -1,0 +1,151 @@
+/* HACHIMAN STUDIO 設計系統 — generated from tokens.json */
+:root, [data-theme="light"] {
+  --hachiman-ginger: #c86a2d;
+  --cream: #f6e7d6;
+  --charcoal: #3b312a;
+  --orei-white: #fdfdfc;
+  --sage: #9ba487;
+  --surface: #fdfdfc;
+  --surface-2: #fbf3ea;
+  --cream-deep: #efdcc6;
+  --line: #e2cbb2;
+  --control-border: #6e5f53;
+  --ink: #3b312a;
+  --ink-muted: #6e5f53;
+  --ginger-text: #93461a;
+  --action: #a9531c;
+  --on-action: #ffffff;
+  --focus-ring: var(--hachiman-ginger);
+  --ginger-soft: #f8dcc7;
+  --sage-text: #5b6448;
+  --sage-soft: #e3e7d9;
+  --danger-text: #a1271b;
+  --danger-soft: #f6d5cf;
+}
+[data-theme="dark"] {
+  --hachiman-ginger: #e08a4e;
+  --cream: #241e1a;
+  --charcoal: #3b312a;
+  --orei-white: #fdfdfc;
+  --sage: #9ba487;
+  --surface: #2f2721;
+  --surface-2: #3a3029;
+  --cream-deep: #3a3029;
+  --line: #4a3d33;
+  --control-border: #c9b6a2;
+  --ink: #f6e7d6;
+  --ink-muted: #c9b6a2;
+  --ginger-text: #f0a673;
+  --action: #e08a4e;
+  --on-action: #241e1a;
+  --focus-ring: var(--hachiman-ginger);
+  --ginger-soft: #4a3020;
+  --sage-text: #b9c49f;
+  --sage-soft: #343a2a;
+  --danger-text: #f2a08f;
+  --danger-soft: #4a2621;
+}
+:root {
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-16: 16px;
+  --space-18: 18px;
+  --space-22: 22px;
+  --space-40: 40px;
+  --space-64: 64px;
+  --radius-xs: 6px;
+  --radius-control: 12px;
+  --radius-button: 14px;
+  --radius-tile: 16px;
+  --radius-panel: 20px;
+  --radius-card: 24px;
+  --radius-hero: 28px;
+  --radius-pill: 999px;
+  --font-sans: Lato, "Noto Sans TC", system-ui, sans-serif;
+  --font-zh: "Noto Sans TC", Lato, system-ui, sans-serif;
+  --font-latin: Lato, "Noto Sans TC", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.display {
+  font-family: var(--font-zh);
+  font-size: 52px;
+  line-height: 1.1;
+  font-weight: 900;
+}
+.h1 {
+  font-family: var(--font-zh);
+  font-size: 36px;
+  line-height: 1.15;
+  font-weight: 900;
+}
+.h2 {
+  font-family: var(--font-zh);
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 900;
+}
+.h3 {
+  font-family: var(--font-zh);
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 900;
+}
+.title-sm {
+  font-family: var(--font-zh);
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 900;
+}
+.lead {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+.body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.75;
+  font-weight: 400;
+}
+.body-sm {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.65;
+  font-weight: 400;
+}
+.label {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+.tag {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+.wordmark {
+  font-family: var(--font-latin);
+  font-size: 46px;
+  line-height: 0.95;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+.readout {
+  font-family: var(--font-latin);
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 900;
+}
+.code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { BRAND, Notice } from "../brand";
 
 const Signup = ({ toggleModal }) => {
     const [account, setAccount] = useState('');
@@ -22,46 +23,47 @@ const Signup = ({ toggleModal }) => {
     };
 
     return (
-        <div className="flex items-center justify-center auto">
-            <div className="bg-grey-lighter max-h-screen overflow-y-auto flex flex-col w-full max-w-sm">
-                <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-                    <h1 className="mb-8 text-3xl text-center">Sign up</h1>
-                    <input 
-                        type="text"
-                        value={account} onChange={(e) => setAccount(e.target.value)}
-                        className="block border border-grey-light w-full p-3 rounded mb-4"
-                        placeholder="Account for login" 
-                    />
-                    <input 
-                        type="text"
-                        value={email} onChange={(e) => setEmail(e.target.value)}
-                        className="block border border-grey-light w-full p-3 rounded mb-4"
-                        placeholder="Email" 
-                    />
-                    <input 
-                        type="password"
-                        value={password} onChange={(e) => setPassword(e.target.value)}
-                        className="block border border-grey-light w-full p-3 rounded mb-4"
-                        placeholder="Password" 
-                    />
-                    <button
-                        onClick={handleSignup}
-                        type="submit"
-                        className="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-700 focus:outline-none my-1"
-                    >
-                        Create Account
-                    </button>
-                    <div className="text-center text-sm text-grey-dark mt-4">
-                        By signing up, you agree to the 
-                        <a className="no-underline border-b border-grey-dark text-grey-dark" href="#">
-                            Terms of Service
-                        </a> and 
-                        <a className="no-underline border-b border-grey-dark text-grey-dark" href="#">
-                            Privacy Policy
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div className="flex flex-col gap-[14px] w-[min(100vw-80px,380px)] text-ink">
+            <h1 className="text-[26px] leading-tight">建立帳號</h1>
+            <label className="hs-field">
+                <span className="hs-field__label">帳號 Account</span>
+                <input
+                    type="text"
+                    value={account} onChange={(e) => setAccount(e.target.value)}
+                    className="hs-field__input"
+                    placeholder="登入用的帳號"
+                    autoComplete="username"
+                />
+            </label>
+            <label className="hs-field">
+                <span className="hs-field__label">Email</span>
+                <input
+                    type="email"
+                    value={email} onChange={(e) => setEmail(e.target.value)}
+                    className="hs-field__input"
+                    placeholder="name@example.com"
+                    autoComplete="email"
+                />
+            </label>
+            <label className="hs-field">
+                <span className="hs-field__label">密碼 Password</span>
+                <input
+                    type="password"
+                    value={password} onChange={(e) => setPassword(e.target.value)}
+                    className="hs-field__input"
+                    autoComplete="new-password"
+                />
+            </label>
+            <button
+                onClick={handleSignup}
+                type="submit"
+                className="hs-btn hs-btn--primary w-full"
+            >
+                建立帳號 →
+            </button>
+            <Notice art={BRAND.orei} title="歐雷幫你顧著帳號" className="bg-surface-2">
+                建立帳號即表示你同意<a href="#">服務條款</a>與<a href="#">隱私權政策</a>。
+            </Notice>
         </div>
     );
 };

@@ -41,40 +41,40 @@ const Sidebar = () => {
 
 	return (
 		<div>
-			<aside className="h-screen w-16 fixed transition-transform ease-in-out duration-1000 z-50 flex flex-col bg-[#1E293B] overflow-y-auto hide-scrollbar">
-				<div className="mt-20 flex flex-col space-y-4">
-					<div onClick={backToBoard} className="group flex items-center justify-center text-white w-full bg-[#1E293B] p-3 rounded-full transition-colors duration-300 hover:bg-gray-700 cursor-pointer">
+			<aside className="h-screen w-16 fixed transition-transform ease-in-out duration-1000 z-50 flex flex-col bg-[#3b312a] overflow-y-auto hide-scrollbar">
+				<div className="mt-20 flex flex-col space-y-4 px-2">
+					<div onClick={backToBoard} title="總覽" aria-label="總覽" className="group flex items-center justify-center hs-rail-btn w-full p-3 rounded-button transition-colors duration-300 cursor-pointer">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 							<path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
 						</svg>
 					</div>
-					<div onClick={toggleModal} className="group flex items-center justify-center text-white w-full bg-[#1E293B] p-3 rounded-full transition-colors duration-300 hover:bg-gray-700 cursor-pointer">
+					<div onClick={toggleModal} title="建立專案" aria-label="建立專案" className="group flex items-center justify-center hs-rail-btn w-full p-3 rounded-button transition-colors duration-300 cursor-pointer">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 							<path strokeLinecap="round" strokeLinejoin="round" d="M12 4.75V19.25M4.75 12H19.25" />
 						</svg>
 					</div>
 					{projectList.map((projectId, index) => (
-						<div onClick={() => goChat(projectId)} key={index} className="group flex items-center justify-center text-white w-full bg-[#1E293B] p-3 rounded-full transition-colors duration-300 hover:bg-gray-700 cursor-pointer">
+						<div onClick={() => goChat(projectId)} key={index} title={`專案 ${projectId} 聊天室`} className="group flex items-center justify-center hs-rail-btn w-full p-3 rounded-button transition-colors duration-300 cursor-pointer">
 							<div className="flex flex-col items-center">
-								<span className="mt-2">{projectId}</span>
+								<span className="font-bold">{projectId}</span>
 							</div>
 						</div>
 					))}
-					<div onClick={logOut} className="group flex items-center justify-center text-white w-full bg-[#1E293B] p-3 rounded-full transition-colors duration-300 hover:bg-gray-700 cursor-pointer sticky bottom-0">
+					<div onClick={logOut} title="登出" aria-label="登出" className="group flex items-center justify-center hs-rail-btn w-full p-3 rounded-button transition-colors duration-300 cursor-pointer sticky bottom-0">
 						<svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
 							<rect width="48" height="48" fill="none"/>
-							<path d="M18 42H10C8.93913 42 7.92172 41.5786 7.17157 40.8284C6.42143 40.0783 6 39.0609 6 38V10C6 8.93913 6.42143 7.92172 7.17157 7.17157C7.92172 6.42143 8.93913 6 10 6H18M32 34L42 24M42 24L32 14M42 24H18" stroke="#F3F3F3" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+							<path d="M18 42H10C8.93913 42 7.92172 41.5786 7.17157 40.8284C6.42143 40.0783 6 39.0609 6 38V10C6 8.93913 6.42143 7.92172 7.17157 7.17157C7.92172 6.42143 8.93913 6 10 6H18M32 34L42 24M42 24L32 14M42 24H18" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
 						</svg>
 					</div>
 				</div>
 			</aside>
 
 			{showModal && (
-				<div className="h-auto fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-					<div className="h-auto bg-white p-8 rounded-lg shadow-lg">
+				<div className="h-auto fixed inset-0 bg-[rgba(59,49,42,0.6)] flex items-center justify-center z-50">
+					<div className="h-auto bg-surface p-[22px] rounded-card max-h-screen overflow-y-auto">
 						<Createproject closeModel={closeModel} addProject={addProjectToList} className="h-auto"/>
-						<button onClick={toggleModal} className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-							Cancel
+						<button onClick={toggleModal} className="hs-btn hs-btn--secondary w-full mt-3">
+							取消 Cancel
 						</button>
 					</div>
 				</div>

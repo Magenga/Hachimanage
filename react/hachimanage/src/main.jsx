@@ -2,6 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
+import './brand/tokens.css';
+import './brand/components.css';
 import './index.css';
 import global from 'global';
 
