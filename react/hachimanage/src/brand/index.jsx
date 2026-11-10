@@ -1,5 +1,5 @@
 /**
- * HACHIMAN STUDIO 八萬工作室設計系統的共用元件（樣式在 ./components.css，class 以 hs- 開頭）。
+ * HACHIMAN STUDIO 八萬工作室設計系統的共用元件（樣式在 ./bundle.css，class 以 hs- 開頭）。
  * 標誌與角色圖 © HACHIMAN STUDIO 八萬工作室，見 ./README.md。
  */
 import lockup from './hachiman-lockup.png';
